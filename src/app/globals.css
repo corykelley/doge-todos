@@ -2,20 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  /* Box sizing rules */
+  *,
+  *::before,
+  *::after {
+    @apply box-border bg-gray-950 text-gray-200;
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Prevent font size inflation */
+  html {
+    @apply [text-size-adjust:none] [-moz-text-size-adjust:none] [-webkit-text-size-adjust:none];
+  }
+
+  /* Remove default margin in favor of better control in authored CSS */
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    @apply mb-0;
+  }
+
+  /* Remove list styles on ul, ol elements with a list role */
+  ul[role="list"],
+  ol[role="list"] {
+    @apply list-none;
+  }
+
+  /* Set core body defaults */
+  body {
+    @apply min-h-screen leading-relaxed;
+  }
+
+  /* Set shorter line heights on headings and interactive elements */
+  h1,
+  h2,
+  h3,
+  h4,
+  button,
+  input,
+  label {
+    @apply leading-tight;
+  }
+
+  /* Balance text wrapping on headings */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply [text-wrap:balance];
+  }
+
+  /* A elements that don't have a class get default styles */
+  a:not([class]) {
+    @apply text-current [text-decoration-skip-ink:auto];
+  }
+
+  /* Make images easier to work with */
+  img,
+  picture {
+    @apply max-w-full block;
+  }
+
+  /* Make sure textareas without a rows attribute are not tiny */
+  textarea:not([rows]) {
+    @apply min-h-[10em];
+  }
+
+  /* Ensure anchored elements have extra scroll margin */
+  :target {
+    @apply [scroll-margin-block:5ex];
+  }
 }
