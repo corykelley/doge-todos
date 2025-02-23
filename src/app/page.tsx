@@ -1,7 +1,9 @@
+import TodoList from "./components/TodoList";
+
 export default function Home() {
   return (
     <div>
-      <h1>Hello</h1>
+      <TodoList />
     </div>
   );
 }
